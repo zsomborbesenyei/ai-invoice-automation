@@ -1,27 +1,18 @@
-# AI-Powered Invoice Parser (Groq & Llama 3)
+# Multi-Format AI Invoice Parser (OCR + LLM)
 
-Ez egy Python alapú automatizációs eszköz, amely képes bármilyen PDF formátumú számlából kinyerni a kulcsfontosságú adatokat és azokat strukturált JSON formátumba rendezni.
+Ez egy intelligens automatizációs eszköz, amely képes strukturálatlan számlákból (PDF, PNG, JPG) adatokat kinyerni és JSON formátumba rendezni.
 
-## Miért különleges?
-A legtöbb hagyományos szoftver elbukik, ha megváltozik a számla elrendezése. Ez a megoldás viszont **Large Language Model (LLM)** technológiát használ, így rugalmasan felismeri az adatokat akkor is, ha a beszállító új sablont használ.
+### Főbb funkciók:
+- **Dinamikus fájlkezelés**: A szkript automatikusan felismeri és feldolgozza a mappában lévő összes támogatott fájlt.
+- **Hibrid technológia**: PDF-parszolás és Tesseract OCR kombinációja.
+- **Llama-3 LLM integráció**: A Groq felhőjén keresztül az AI értelmezi a szöveget, nem csak beolvassa.
 
-## Technikai részletek
-- **Nyelv:** Python
-- **AI Modell:** Llama-3.3-70b (a Groq felhőjén keresztül)
-- **PDF Feldolgozás:** `pdfplumber`
-- **Adatformátum:** Strukturált JSON
+### Kinyert adatok:
+A rendszer az alábbi mezőket azonosítja:
+`elado_neve`, `vevo_neve`, `szamla_szama`, `kiallitas_datuma`, `vegosszeg_brutto`, `penznem`.
 
-## Telepítés és használat
-1. Klónozd a repository-t.
-2. Telepítsd a függőségeket:  
-   `pip install -r requirements.txt`
-3. Hozz létre egy `.env` fájlt a saját Groq API kulcsoddal:  
-   `GROQ_API_KEY=a_te_kulcsod`
-4. Helyezz el egy `szamla_pelda.pdf` fájlt a mappában.
-5. Futtasd:  
-   `python main.py`
-
-## Jövőbeli tervek
-- Webes felület (Streamlit) hozzáadása.
-- Több számla tömeges (batch) feldolgozása.
-- Google Sheets integráció az adatok automatikus mentéséhez.
+### Technológiai stack:
+- **Python** 
+- **Groq API** 
+- **Tesseract OCR** 
+- **pdfplumber** 
