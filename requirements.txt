@@ -1,3 +1,5 @@
 groq
 pdfplumber
 python-dotenv
+pytesseract
+Pillow
