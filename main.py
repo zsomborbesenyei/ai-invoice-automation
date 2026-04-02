@@ -6,15 +6,11 @@ from groq import Groq
 from dotenv import load_dotenv
 import json
 
-# 1. Tesseract elérési útjának beállítása (Windows-on kötelező)
-# Ha máshová telepítetted, írd át az útvonalat!
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
-# 2. Környezeti változók betöltése (.env fájlból)
 load_dotenv()
 client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
-# Támogatott fájltípusok
 SUPPORTED_EXTENSIONS = ['.pdf', '.png', '.jpg', '.jpeg']
 
 def extract_text(file_path):
@@ -31,7 +27,6 @@ def extract_text(file_path):
         
         elif ext in ['.png', '.jpg', '.jpeg']:
             img = Image.open(file_path)
-            # Magyar és angol nyelvű felismerés
             return pytesseract.image_to_string(img, lang='hun+eng')
     except Exception as e:
         print(f"Hiba a fájl beolvasásakor ({file_path}): {e}")
@@ -40,7 +35,6 @@ def extract_text(file_path):
 def analyze_with_ai(raw_text, filename):
     """Adatkinyerés AI-val a pontosan kért mezőkkel."""
     
-    # Itt adjuk meg az AI-nak, pontosan mit keressen
     prompt = f"""
     Feladat: Nyerd ki az alábbi szövegből a számla adatait szigorúan JSON formátumban.
     Ha egy adat nem található, írj 'N/A'-t az értékhez.
@@ -71,7 +65,6 @@ def analyze_with_ai(raw_text, filename):
         return f"Hiba az AI elemzés során: {e}"
 
 def main():
-    # Megkeressük az összes fájlt a mappában
     files = [f for f in os.listdir('.') if os.path.isfile(f)]
     
     found_any = False
@@ -83,18 +76,14 @@ def main():
             found_any = True
             print(f"\n[+] Feldolgozás: {file}")
             
-            # 1. Szöveg kinyerése
             raw_content = extract_text(file)
             
             if raw_content and len(raw_content.strip()) > 5:
-                # 2. AI elemzés
                 json_result = analyze_with_ai(raw_content, file)
                 
-                # 3. Kiírás a képernyőre
                 print("--- Kinyert adatok: ---")
                 print(json_result)
                 
-                # 4. Mentés külön fájlba
                 output_name = f"eredmeny_{file}.json"
                 with open(output_name, "w", encoding="utf-8") as f:
                     f.write(json_result)
