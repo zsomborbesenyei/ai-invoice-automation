@@ -4,7 +4,6 @@ import json
 from groq import Groq
 from dotenv import load_dotenv
 
-# Kulcs betöltése
 load_dotenv()
 client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
@@ -37,7 +36,6 @@ def analyze_invoice_with_ai(raw_text):
     {raw_text}
     """
 
-    # Itt a Llama-3 modellt használjuk, ami ingyenes és profi
     response = client.chat.completions.create(
         model="llama-3.3-70b-versatile",
         messages=[
@@ -68,7 +66,6 @@ def main():
     try:
         structured_data = analyze_invoice_with_ai(raw_content)
 
-        # Eredmény mentése
         with open("eredmeny.json", "w", encoding="utf-8") as f:
             f.write(structured_data)
 
