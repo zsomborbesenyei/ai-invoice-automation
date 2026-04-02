@@ -11,7 +11,7 @@ Ez egy Python alapú automatizációs eszköz, amely képes strukturálatlan PDF
 ## Telepítés és használat
 1. Klónozd a projektet.
 2. Telepítsd a függőségeket: `pip install -r requirements.txt`.
-3. Hozz létre egy `.env` fájlt és add hozzá az `OPENAI_API_KEY` kulcsodat.
+3. Hozz létre egy `.env` fájlt és add hozzá az `GROQ_API_KEY` kulcsodat.
 4. Futtasd a programot: `python main.py`.
 
 ## Miért hasznos ez?
