@@ -1,4 +1,4 @@
-# 📄 AI-Powered Invoice Parser (Groq & Llama 3)
+# AI-Powered Invoice Parser (Groq & Llama 3)
 
 Ez egy Python alapú automatizációs eszköz, amely képes bármilyen PDF formátumú számlából kinyerni a kulcsfontosságú adatokat és azokat strukturált JSON formátumba rendezni.
 
